@@ -129,7 +129,6 @@ function goalOrientedRobot({ place, parcels }, route) {
     return { direction: route[0], memory: route.slice(1) };
 }
 //-----------------------------------------------------------
-
 function compareRobots(robot1, memory1, robot2, memory2) {
     const steps = { robot1: 0, robot2: 0 }
 
