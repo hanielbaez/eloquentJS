@@ -1,0 +1,55 @@
+<h1>Mountains</h1>
+
+<div id="mountains"></div>
+
+<script>
+        const MOUNTAINS = [
+    {name: "Kilimanjaro", height: 5895, place: "Tanzania"},
+    {name: "Everest", height: 8848, place: "Nepal"},
+    {name: "Mount Fuji", height: 3776, place: "Japan"},
+    {name: "Vaalserberg", height: 323, place: "Netherlands"},
+    {name: "Denali", height: 6168, place: "United States"},
+    {name: "Popocatepetl", height: 5465, place: "Mexico"},
+    {name: "Mont Blanc", height: 4808, place: "Italy/France"}
+  ];
+
+  const createTable = (arr) => {
+    let table = document.createElement("table");
+    
+  	arr.forEach((obj, index) => {
+      let row = document.createElement("tr");
+      
+      //create heads from the first obj's keys
+      if(index === 0){
+        const keys = Object.keys(obj);
+        
+        for (key in keys){
+        	let head = document.createElement("th");
+          	head.appendChild(document.createTextNode(keys[key]));
+          	row.appendChild(head);
+        };
+        table.appendChild(row);
+        
+        row = document.createElement("tr");
+      }
+      
+      	const values = Object.values(obj);
+        for (value in values){
+        	let cell = document.createElement("td");
+          
+          	//right-align cells that contain number values
+          	if(typeof values[value] === "number"){
+            	cell.style.textAlign = "right";
+            }
+          	
+          	cell.appendChild(document.createTextNode(values[value]));
+            row.appendChild(cell);
+        }
+     
+      table.appendChild(row);
+    })
+    return table;
+  };
+  
+  document.getElementById("mountains").appendChild(createTable(MOUNTAINS));
+</script>

@@ -1,0 +1,29 @@
+<h1>Heading with a <span>span</span> element.</h1>
+<p>A paragraph with <span>one</span>, <span>two</span>
+    spans.</p>
+
+<script>
+    function byTagName(node, tagName) {
+        const children = Object.values(node.children);
+        let findTag = [];
+
+        children.forEach(child => {
+            if (child.nodeName.toLowerCase() === tagName) {
+                findTag = findTag.concat(child);
+            }
+
+            if (child.children.length) {
+                findTag = findTag.concat(byTagName(child, tagName));
+            };
+        });
+        return findTag;
+    };
+
+    console.log(byTagName(document.body, "h1").length);
+    // → 1
+    console.log(byTagName(document.body, "span").length);
+    // → 3
+    let para = document.querySelector("p");
+    console.log(byTagName(para, "span").length);
+  // → 2
+</script>
