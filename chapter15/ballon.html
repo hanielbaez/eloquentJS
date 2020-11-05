@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ballon</title>
+</head>
+
+<body>
+  <p style="font-size: 10px; margin-top: 40%;">🎈</p>
+  <script>
+    document.body.style.textAlign = 'center';
+
+    const eventHandler = function (event) {
+      event.preventDefault();
+
+      let ballon = document.getElementsByTagName('p')[0];
+      let newFontSize;
+      let isExplodes;
+
+      if (event.key === 'ArrowUp') {
+        newFontSize = parseInt(ballon.style.fontSize.match(/\d+/)[0]) + ballon.style.fontSize.match(/\d+/)[0] * 0.1;
+        if (newFontSize >= 200) isExplodes = true;
+      } else if (event.key === 'ArrowDown') {
+        newFontSize = parseInt(ballon.style.fontSize.match(/\d+/)[0]) - ballon.style.fontSize.match(/\d+/)[0] * 0.1;
+      };
+
+      if (isExplodes) {
+        ballon.textContent = '💥';
+        document.removeEventListener('keydown', eventHandler);
+      };
+
+      ballon.style.fontSize = Math.max(10, newFontSize) + 'px';
+    };
+
+    document.addEventListener('keydown', eventHandler);
+  </script>
+</body>
+
+</html>
